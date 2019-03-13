@@ -90,53 +90,51 @@ assignToDays() {
   let thursday = {}
   let friday = {}
   let saturday = {}
+  let days = [[sunday], [monday], [tuesday], [wednesday], [thursday], [friday], [saturday]]
+  days.push({weatherResults})
+
   for (let i = 0; i<weatherResults.list.length; i++) {
 
-  let days = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
   
   let currentWeekDay = new Date(weatherResults.list[i].dt*1000).getDay();
 
 statement:
 switch(currentWeekDay) {
   case 0:
-  days[sunday] += 'sunday'[weatherResults.list[i]]
+  sunday = days[weatherResults.list[i]]
   // days.push( days[sunday])
   break statement;
 
   case 1:
-  days = 'monday'[weatherResults.list[i]]
+  [monday] = [weatherResults.list[i]]
   // days.push([monday])
   break statement;
 
   case 2:
-  days =  'tuesday'[weatherResults.list[i]]
+  [tuesday] = [weatherResults.list[i]]
   // days.push([tuesday])
 
   break statement;
   case 3:
-  days = 'wednesday'[weatherResults.list[i]]
+  [wednesday] = [weatherResults.list[i]]
   // days.push([wednesday])
   // break statement;
 
   case 4:
-  days = 'thursday'[weatherResults.list[i]]
+  [thursday] = [weatherResults.list[i]]
   // days.push([thursday])
 
   break statement;
   case 5:
-  days =  'friday'[weatherResults.list[i]]
+  [friday] =  [weatherResults.list[i]]
   // days.push(friday)
 
   break statement;
   case 6:
-   days[saturday]=saturday[weatherResults.list[i]]
-this.setState({weatherByDay:[
-              days[saturday]
-]})
+   [saturday]=[weatherResults.list[i]]
   break statement;
-
   } 
-
+  
 
 // let filtered = days.filter(!Math.max(days.main.temp_max) && !Math.min(days.main.temp_max))
 // this.setState({
@@ -154,15 +152,18 @@ this.setState({weatherByDay:[
       // [saturday]:saturday
     
 
-    
+      this.setState({
+        weatherByDay: [days[sunday],days[monday],days[tuesday],days[wednesday],days[thursday],days[friday], days[saturday]]
+      })
+      
+      }
             
 
-console.log(this.state)
+// console.log(this.state)
 
   }
 // this.setState({weatherResults: weatherResults})
 
-}
 
 
 checkCity() {
